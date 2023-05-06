@@ -1,0 +1,4 @@
+wonderwords==2.2.0
+keyboard==0.13.5
+colour==0.1.5
+readchar==4.0.5
