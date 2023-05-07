@@ -1,6 +1,6 @@
 from readchar import readkey, key
 from wonderwords import RandomSentence
-from colour import Color
+from termcolor import cprint, colored
 
 generate = RandomSentence()
 sentence = generate.sentence().lower()
@@ -41,14 +41,33 @@ def practice_test():
             # print(updated_sentence[:sentence_cursor] + '|', end='\r')
             # print('test5', end='\r')
 
-        print_user_input_on_one_line(updated_sentence, sentence_cursor)
+        print_user_input_on_one_line(updated_sentence, sentence, sentence_cursor)
+        # compare_strings(updated_sentence, sentence)
 
 
-def print_user_input_on_one_line(current_input, cursor):
+def print_user_input_on_one_line(current_input, expected_input, cursor):
     print('\x1b[2K\r', end='\r')
-    print(current_input[:cursor] + '|', end='\r')
+
+    # index = 0
+    # for character in current_input:
+    #     if(character == expected_input[0]):
+    #         cprint(character, "green", "on_red", end='\r')
+    #         index+=1
+
+    # print(current_input[:cursor] + '|', end='\r')
 
     # if error, replace letter with error character, add colour
     # if correct, change colour
     # print to the same line
     # fix git repository
+
+    expected_words = current_input.split()
+    actual_words = expected_input.split()
+
+    for expected_word, actual_word in zip(expected_words, actual_words):
+        if expected_word == actual_word:
+            print(colored(expected_word, 'green'), end=' ')
+        else:
+            print(colored(expected_word, 'red'), end=' ')
+
+    print(end='\r')
