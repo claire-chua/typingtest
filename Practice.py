@@ -20,12 +20,12 @@ def practice_test():
 
     while True:
         k = readkey()
-        if k == key.BACKSPACE:
+        if (k == key.BACKSPACE):
             sentence_cursor -= 1
             updated_sentence = updated_sentence.rstrip(updated_sentence[-1])
             # print('test2', end='\r')
 
-        elif k != sentence[sentence_cursor]:
+        elif (k != sentence[sentence_cursor]):
             error = error + 1
             # print("error")
             sentence_cursor += 1
@@ -35,11 +35,13 @@ def practice_test():
             # print(updated_sentence[:sentence_cursor] + '|', end='\r')
             # print('test3', end='\r')
 
-        elif k == sentence[sentence_cursor]:
+        elif (k == sentence[sentence_cursor]):
             sentence_cursor += 1
             updated_sentence = updated_sentence + k
             # print(updated_sentence[:sentence_cursor] + '|', end='\r')
             # print('test5', end='\r')
+        elif(sentence_cursor[-2]):
+            print("boo")
 
         print_user_input_on_one_line(updated_sentence, sentence, sentence_cursor)
         # compare_strings(updated_sentence, sentence)
