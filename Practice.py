@@ -8,7 +8,6 @@ sentence = generate.sentence().lower()
 
 
 def practice_test():
-    start_time = time.time()
     print(sentence)
     error = 0
     user_input = print("Please type the sentence shown above. \n")
@@ -48,8 +47,7 @@ def practice_test():
 
         print_user_input_on_one_line(updated_sentence, sentence, sentence_cursor)
         # compare_strings(updated_sentence, sentence)
-    end_time = time.time()
-    elapsed_time = end_time - start_time
+
     print("\n",elapsed_time)
 
 
