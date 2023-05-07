@@ -1,2 +1,0 @@
-wonderwords==2.2.0
-keyboard==0.13.5
