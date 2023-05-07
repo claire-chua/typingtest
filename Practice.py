@@ -1,3 +1,4 @@
+import time
 from readchar import readkey, key
 from wonderwords import RandomSentence
 from termcolor import colored
@@ -7,14 +8,15 @@ sentence = generate.sentence().lower()
 
 
 def practice_test():
+    start_time = time.time()
     print(sentence)
     error = 0
     user_input = print("Please type the sentence shown above. \n")
     sentence_cursor = 0
     error_character = ""
     updated_sentence = ""
-
-    while sentence_cursor < len(sentence):
+    end_test = time.time() + 60
+    while time.time() < end_test:
         k = readkey()
         if (k == key.BACKSPACE):
             sentence_cursor -= 1
@@ -37,13 +39,18 @@ def practice_test():
             # print(updated_sentence[:sentence_cursor] + '|', end='\r')
             # print('test5', end='\r')
 
+    #get time module
+    #create accuracy + wpm
+    #save input for file handling
 
 
-        print(calculate_score)
+
 
         print_user_input_on_one_line(updated_sentence, sentence, sentence_cursor)
         # compare_strings(updated_sentence, sentence)
-
+    end_time = time.time()
+    elapsed_time = end_time - start_time
+    print("\n",elapsed_time)
 
 
 def print_user_input_on_one_line(current_input, expected_input, cursor):
