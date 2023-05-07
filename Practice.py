@@ -1,13 +1,9 @@
 from readchar import readkey, key
 from wonderwords import RandomSentence
-from termcolor import cprint, colored
+from termcolor import colored
 
 generate = RandomSentence()
 sentence = generate.sentence().lower()
-
-
-# standard_colour = Color("white")
-# error_colour = Color("red")
 
 
 def practice_test():
@@ -18,12 +14,12 @@ def practice_test():
     error_character = ""
     updated_sentence = ""
 
-    while True:
+    while sentence_cursor < len(sentence):
         k = readkey()
         if (k == key.BACKSPACE):
             sentence_cursor -= 1
             updated_sentence = updated_sentence.rstrip(updated_sentence[-1])
-            # print('test2', end='\r')
+
 
         elif (k != sentence[sentence_cursor]):
             error = error + 1
@@ -40,11 +36,14 @@ def practice_test():
             updated_sentence = updated_sentence + k
             # print(updated_sentence[:sentence_cursor] + '|', end='\r')
             # print('test5', end='\r')
-        elif(sentence_cursor[-2]):
-            print("boo")
+
+
+
+        print(calculate_score)
 
         print_user_input_on_one_line(updated_sentence, sentence, sentence_cursor)
         # compare_strings(updated_sentence, sentence)
+
 
 
 def print_user_input_on_one_line(current_input, expected_input, cursor):
