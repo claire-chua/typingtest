@@ -62,7 +62,10 @@ def timed_test():
 
 def calculate_results(elapsed_time, error, total_characters):
     wpm = str(round((((total_characters / 5) / elapsed_time) * 60), 2))
-    accuracy = (str(round((((total_characters - error) / total_characters) * 100), 2)) + "%")
+    if total_characters == 0:
+        accuracy = str(0) + "%"
+    else:
+        accuracy = (str(round((((total_characters - error) / total_characters) * 100), 2)) + "%")
     print("\nresults are:")
     print("\ntotal time taken: " + str(round(elapsed_time, 2)) + "s")
     print("\nwords per minute (WPM): " + wpm)
