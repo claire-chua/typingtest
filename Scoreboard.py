@@ -1,9 +1,10 @@
 from Practice import *
-import pandas as pd
+# import pandas as pd
 
 opened_file = False
-check_file = pd.read_csv("scores.csv")
-if opened_file == False or check_file.empty == True:
+# check_file = pd.read_csv("scores.csv")
+or check_file.empty == True
+if opened_file == False:
     with open("scores.csv", 'a', newline='') as file:
         writer = csv.writer(file)
         writer.writerow(["WPM, Accuracy(%)"])

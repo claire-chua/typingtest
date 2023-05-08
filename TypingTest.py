@@ -23,6 +23,7 @@ while player_choice != "3":
     else:
         print("Invalid response. please ensure to enter a number a number that corresponds with your choice")
 
-        #finish csv
-        #round to two integers
+
+
         #add paragraph
+        #fix pandas

@@ -1,4 +1,4 @@
-import time, csv, pandas
+import time, csv
 from readchar import readkey, key
 from wonderwords import RandomSentence
 from termcolor import colored
@@ -67,14 +67,14 @@ def calculate_results(elapsed_time):
     # calculate accuracy
     # global WPM
     # global accuracy
-    WPM = (((total_characters/5)/elapsed_time)*60)
-    accuracy = (((total_characters - error)/ total_characters)* 100)
+    WPM = str(round((((total_characters/5)/elapsed_time)*60), 2))
+    accuracy = (str(round((((total_characters - error)/ total_characters)* 100), 2))+ "%")
     print("\nresults are:")
-    print("\ntotal time taken: " + str(round(elapsed_time,2)))
-    print("\nwords per minute (WPM): " + str(round((((total_characters/5)/elapsed_time)*60), 2)))
-    print("\ntyping accuracy: " + str(round((((total_characters - error)/ total_characters)* 100), 2))+ "%")
+    print("\ntotal time taken: " + str(round(elapsed_time,2)) + "s")
+    print("\nwords per minute (WPM): " + WPM)
+    print("\ntyping accuracy: " + accuracy)
 
-    with open("scores.csv", 'a', newline = '') as file:
+    with open("scores.csv", 'a', newline='') as file:
         writer = csv.writer(file)
         writer.writerow([WPM,accuracy])
 
