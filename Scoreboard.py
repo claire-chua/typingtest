@@ -1,8 +1,9 @@
-import csv
 from Practice import *
+import pandas as pd
 
 opened_file = False
-if opened_file == False:
+check_file = pd.read_csv("scores.csv")
+if opened_file == False or check_file.empty == True:
     with open("scores.csv", 'a', newline='') as file:
         writer = csv.writer(file)
         writer.writerow(["WPM, Accuracy(%)"])
