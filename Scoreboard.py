@@ -1,11 +1,9 @@
 from Practice import *
 
-
 opened_file = False
 # check_file = pd.read_csv("scores.csv")
 
-
-if opened_file == False:
+if not opened_file:
     with open("scores.csv", 'a', newline='') as file:
         writer = csv.writer(file)
         writer.writerow(["WPM, Accuracy(%)"])

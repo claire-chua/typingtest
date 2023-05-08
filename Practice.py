@@ -1,14 +1,18 @@
-import time, csv
+import csv
+import time
+
 from readchar import readkey, key
-from wonderwords import RandomSentence
 from termcolor import colored
+from wonderwords import RandomSentence
 
 sentence_generator = RandomSentence()
 sentence = ""
+
 for index in range(25):
     sentence += sentence_generator.sentence().lower() + " "
+
+
 def timed_test():
-    global error
     error = 0
     print("Please type the sentence shown below. The timer will begin once you press a key. "
           "Press 'enter' to calculate results. \n")
@@ -19,11 +23,9 @@ def timed_test():
     start_time = 0
     timer_started = False
     user_exited = False
-    global total_characters
     total_characters = 0
 
-
-    while (sentence_cursor < len(sentence) + 1 and user_exited is not True):
+    while sentence_cursor < len(sentence) + 1 and user_exited is not True:
         k = readkey()
         if not timer_started:
             start_time = time.time()
@@ -52,21 +54,22 @@ def timed_test():
 
         print_user_input_on_one_line(updated_sentence, sentence, sentence_cursor)
 
+    print(elapsed_time, end="\r")
+    calculate_results(elapsed_time, error, total_characters)
 
-    print(elapsed_time, end ="\r")
-    calculate_results(elapsed_time)
 
-def calculate_results(elapsed_time):
-    WPM = str(round((((total_characters/5)/elapsed_time)*60), 2))
-    accuracy = (str(round((((total_characters- error)/ total_characters)* 100), 2))+ "%")
+def calculate_results(elapsed_time, error, total_characters):
+    wpm = str(round((((total_characters / 5) / elapsed_time) * 60), 2))
+    accuracy = (str(round((((total_characters - error) / total_characters) * 100), 2)) + "%")
     print("\nresults are:")
-    print("\ntotal time taken: " + str(round(elapsed_time,2)) + "s")
-    print("\nwords per minute (WPM): " + WPM)
+    print("\ntotal time taken: " + str(round(elapsed_time, 2)) + "s")
+    print("\nwords per minute (WPM): " + wpm)
     print("\ntyping accuracy: " + accuracy)
 
     with open("scores.csv", 'a', newline='') as file:
         writer = csv.writer(file)
-        writer.writerow([WPM,accuracy])
+        writer.writerow([wpm, accuracy])
+
 
 def print_user_input_on_one_line(current_input, expected_input, cursor):
     print('\x1b[2K\r', end='\r')

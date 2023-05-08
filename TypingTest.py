@@ -1,6 +1,8 @@
 from Practice import timed_test
 from Scoreboard import scoreboard
+
 print("Keyboard Warrior")
+
 
 def typetest_menu():
     print("Start - 1")
@@ -9,19 +11,17 @@ def typetest_menu():
     choice = input("Please enter the number that corresponds with your choice: ")
     return choice
 
+
 player_choice = ""
 
 while player_choice != "3":
     player_choice = typetest_menu()
-    if (player_choice == "1"):
+    if player_choice == "1":
         timed_test()
-    elif (player_choice == "2"):
+    elif player_choice == "2":
         scoreboard()
-    elif (player_choice == "3"):
+    elif player_choice == "3":
         print("Keyboard Warrior")
         typetest_menu()
     else:
         print("Invalid response. please ensure to enter a number a number that corresponds with your choice")
-
-
-
