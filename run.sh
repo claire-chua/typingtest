@@ -1,5 +1,8 @@
 #!/bin/bash
-python3 -m venv typingtest-venv
-./typingtest-venv/Scripts/activate
-pip3 install -r requirements.txt
-python3 TypingTest.py
+pip install virtualenv
+python -m virtualenv env
+source venv/bin/activate
+pip install -r requirements.txt
+python3 TypingTestMenu.py
+
+#develop

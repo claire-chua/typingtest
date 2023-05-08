@@ -1,10 +1,12 @@
 import csv
 import time
 
+import cursor
 from readchar import readkey, key
 from termcolor import colored
 from wonderwords import RandomSentence
 
+cursor.hide()
 sentence_generator = RandomSentence()
 sentence = ""
 
@@ -52,7 +54,7 @@ def timed_test():
             sentence_cursor += 1
             updated_sentence = updated_sentence + k
 
-        print_user_input_on_one_line(updated_sentence, sentence, sentence_cursor)
+        print_user_input_on_one_line(updated_sentence, sentence)
 
     print(elapsed_time, end="\r")
     calculate_results(elapsed_time, error, total_characters)
@@ -71,7 +73,7 @@ def calculate_results(elapsed_time, error, total_characters):
         writer.writerow([wpm, accuracy])
 
 
-def print_user_input_on_one_line(current_input, expected_input, cursor):
+def print_user_input_on_one_line(current_input, expected_input):
     print('\x1b[2K\r', end='\r')
 
     expected_words = current_input.split()
