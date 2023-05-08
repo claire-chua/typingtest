@@ -37,37 +37,26 @@ def timed_test():
         elif k == key.ENTER:
             user_exited = True
             continue
+
         elif k != sentence[sentence_cursor]:
             total_characters += 1
             error = error + 1
-            # print("error")
             sentence_cursor += 1
             error_character = "" + k
-            # print("I've printed the error")
             updated_sentence = (updated_sentence[:sentence_cursor - 1] + error_character)
-            # print(updated_sentence[:sentence_cursor] + '|', end='\r')
-            # print('test3', end='\r')
+
         elif k == sentence[sentence_cursor]:
             total_characters += 1
             sentence_cursor += 1
             updated_sentence = updated_sentence + k
-            # print(updated_sentence[:sentence_cursor] + '|', end='\r')
-            # print('test5', end='\r')
-        # get time module
-        # create accuracy + wpm
-        # save input for file handling
-        # total_character_count = total_characters
-        print_user_input_on_one_line(updated_sentence, sentence, sentence_cursor)
-        # compare_strings(updated_sentence, sentence)
 
-    # print(elapsed_time, end ="\r")
+        print_user_input_on_one_line(updated_sentence, sentence, sentence_cursor)
+
+
+    print(elapsed_time, end ="\r")
     calculate_results(elapsed_time)
 
 def calculate_results(elapsed_time):
-    # calculate WPM
-    # calculate accuracy
-    # global WPM
-    # global accuracy
     WPM = str(round((((total_characters/5)/elapsed_time)*60), 2))
     accuracy = (str(round((((total_characters- error)/ total_characters)* 100), 2))+ "%")
     print("\nresults are:")
@@ -81,21 +70,6 @@ def calculate_results(elapsed_time):
 
 def print_user_input_on_one_line(current_input, expected_input, cursor):
     print('\x1b[2K\r', end='\r')
-
-
-
-    # index = 0
-    # for character in current_input:
-    #     if(character == expected_input[0]):
-    #         cprint(character, "green", "on_red", end='\r')
-    #         index+=1
-
-    # print(current_input[:cursor] + '|', end='\r')
-
-    # if error, replace letter with error character, add colour
-    # if correct, change colour
-    # print to the same line
-    # fix git repository
 
     expected_words = current_input.split()
     actual_words = expected_input.split()
