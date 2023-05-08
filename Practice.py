@@ -60,9 +60,7 @@ def practice_test():
         # compare_strings(updated_sentence, sentence)
 
     # print(elapsed_time, end ="\r")
-    calculate_results(elapsed_time
-                      )
-
+    calculate_results(elapsed_time)
 
 def calculate_results(elapsed_time):
     # calculate WPM
@@ -76,9 +74,8 @@ def calculate_results(elapsed_time):
     print("\nwords per minute (WPM): " + str(((total_characters/5)/elapsed_time)*60))
     print("\ntyping accuracy: " + str(((total_characters - error)/ total_characters)* 100) + "%")
 
-    with open("scores.csv", 'a') as file:
+    with open("scores.csv", 'a', newline = '') as file:
         writer = csv.writer(file)
-        writer.writerow(["WPM, Accuracy(%)"])
         writer.writerow([WPM,accuracy])
 
 def print_user_input_on_one_line(current_input, expected_input, cursor):
