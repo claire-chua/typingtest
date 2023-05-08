@@ -1,11 +1,11 @@
 from Start import start
+from Scoreboard import scoreboard
 print("Keyboard Warrior")
 
 def typetest_menu():
     print("Start - 1")
     print("Scoreboard - 2")
-    print("Audio - 3")
-    print("Exit - 4")
+    print("Exit - 3")
     choice = input("Please enter the number that corresponds with your choice: ")
     return choice
 
@@ -17,10 +17,12 @@ while player_choice != "3":
         start()
     elif (player_choice == "2"):
         scoreboard()
-    elif(player_choice == "3"):
-        audio()
-    elif (player_choice == "4"):
+    elif (player_choice == "3"):
         print("Keyboard Warrior")
         typetest_menu()
     else:
         print("Invalid response. please ensure to enter a number a number that corresponds with your choice")
+
+        #finish csv
+        #round to two integers
+        #add paragraph

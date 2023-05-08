@@ -1,4 +1,4 @@
-import time
+import time, csv
 from readchar import readkey, key
 from wonderwords import RandomSentence
 from termcolor import colored
@@ -67,14 +67,19 @@ def practice_test():
 def calculate_results(elapsed_time):
     # calculate WPM
     # calculate accuracy
+    # global WPM
+    # global accuracy
+    WPM = (((total_characters/5)/elapsed_time)*60)
+    accuracy = (((total_characters - error)/ total_characters)* 100)
+    print("\nresults are:")
+    print("\ntotal time taken: " + str(elapsed_time))
+    print("\nwords per minute (WPM): " + str(((total_characters/5)/elapsed_time)*60))
+    print("\ntyping accuracy: " + str(((total_characters - error)/ total_characters)* 100) + "%")
 
-    print("results are:")
-    print("total time taken: " + str(elapsed_time))
-    print("words per minute (WPM): " + str(((total_characters/5)/elapsed_time)*60))
-    print("typing accuracy: " + str(((total_characters - error)/ total_characters)* 100) + "%")
-
-#     output results/amend CSV of results
-
+    with open("scores.csv", 'a') as file:
+        writer = csv.writer(file)
+        writer.writerow(["WPM, Accuracy(%)"])
+        writer.writerow([WPM,accuracy])
 
 def print_user_input_on_one_line(current_input, expected_input, cursor):
     print('\x1b[2K\r', end='\r')
