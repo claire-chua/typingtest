@@ -25,5 +25,3 @@ while player_choice != "3":
 
 
 
-        #add paragraph
-        #fix pandas

@@ -8,10 +8,11 @@ sentence = generate.sentence().lower()
 
 
 def timed_test():
-    print(sentence)
     global error
     error = 0
-    print("Please type the sentence shown above. The timer will begin once you press a key. Press 'enter' to submit. \n")
+    print("Please type the sentence shown below. The timer will begin once you press a key. "
+          "Press 'enter' to submit. \n")
+    print(sentence)
     sentence_cursor = 0
     updated_sentence = ""
     elapsed_time = 0
@@ -21,8 +22,8 @@ def timed_test():
     global total_characters
     total_characters = 0
 
-#sentence_cursor < len(sentence))
-    while (user_exited is not True):
+
+    while (sentence_cursor < len(sentence) and user_exited is not True):
         k = readkey()
         if not timer_started:
             start_time = time.time()

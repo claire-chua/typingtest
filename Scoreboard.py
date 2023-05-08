@@ -3,7 +3,7 @@ from Practice import *
 
 opened_file = False
 # check_file = pd.read_csv("scores.csv")
-or check_file.empty == True
+# or check_file.empty == True
 if opened_file == False:
     with open("scores.csv", 'a', newline='') as file:
         writer = csv.writer(file)
