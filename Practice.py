@@ -3,15 +3,15 @@ from readchar import readkey, key
 from wonderwords import RandomSentence
 from termcolor import colored
 
-generate = RandomSentence()
-sentence = generate.sentence().lower()
-
-
+sentence_generator = RandomSentence()
+sentence = ""
+for index in range(25):
+    sentence += sentence_generator.sentence().lower() + " "
 def timed_test():
     global error
     error = 0
     print("Please type the sentence shown below. The timer will begin once you press a key. "
-          "Press 'enter' to submit. \n")
+          "Press 'enter' to calculate results. \n")
     print(sentence)
     sentence_cursor = 0
     updated_sentence = ""
@@ -23,7 +23,7 @@ def timed_test():
     total_characters = 0
 
 
-    while (sentence_cursor < len(sentence) and user_exited is not True):
+    while (sentence_cursor < len(sentence) + 1 and user_exited is not True):
         k = readkey()
         if not timer_started:
             start_time = time.time()
@@ -56,7 +56,7 @@ def timed_test():
         # get time module
         # create accuracy + wpm
         # save input for file handling
-        total_character_count = total_characters
+        # total_character_count = total_characters
         print_user_input_on_one_line(updated_sentence, sentence, sentence_cursor)
         # compare_strings(updated_sentence, sentence)
 
@@ -69,7 +69,7 @@ def calculate_results(elapsed_time):
     # global WPM
     # global accuracy
     WPM = str(round((((total_characters/5)/elapsed_time)*60), 2))
-    accuracy = (str(round((((total_characters - error)/ total_characters)* 100), 2))+ "%")
+    accuracy = (str(round((((total_characters- error)/ total_characters)* 100), 2))+ "%")
     print("\nresults are:")
     print("\ntotal time taken: " + str(round(elapsed_time,2)) + "s")
     print("\nwords per minute (WPM): " + WPM)
