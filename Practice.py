@@ -9,18 +9,20 @@ sentence = generate.sentence().lower()
 
 def practice_test():
     print(sentence)
+    global error
     error = 0
-    user_input = print("Please type the sentence shown above. \n")
+    print("Please type the sentence shown above. The timer will begin once you press a key. Press 'enter' to submit. \n")
     sentence_cursor = 0
-    error_character = ""
     updated_sentence = ""
     elapsed_time = 0
     start_time = 0
     timer_started = False
     user_exited = False
+    global total_characters
+    total_characters = 0
 
-    while (sentence_cursor < len(sentence)) and (user_exited is not True):
-        print("\n", elapsed_time)
+#sentence_cursor < len(sentence))
+    while (user_exited is not True):
         k = readkey()
         if not timer_started:
             start_time = time.time()
@@ -32,9 +34,10 @@ def practice_test():
             sentence_cursor -= 1
             updated_sentence = updated_sentence.rstrip(updated_sentence[-1])
         elif k == key.ENTER:
-            print("enter key")
             user_exited = True
+            continue
         elif k != sentence[sentence_cursor]:
+            total_characters += 1
             error = error + 1
             # print("error")
             sentence_cursor += 1
@@ -44,26 +47,39 @@ def practice_test():
             # print(updated_sentence[:sentence_cursor] + '|', end='\r')
             # print('test3', end='\r')
         elif k == sentence[sentence_cursor]:
+            total_characters += 1
             sentence_cursor += 1
             updated_sentence = updated_sentence + k
             # print(updated_sentence[:sentence_cursor] + '|', end='\r')
             # print('test5', end='\r')
-
-
-        print(k)
-
         # get time module
         # create accuracy + wpm
         # save input for file handling
-
+        total_character_count = total_characters
         print_user_input_on_one_line(updated_sentence, sentence, sentence_cursor)
         # compare_strings(updated_sentence, sentence)
 
-    print(elapsed_time, end ="\r")
+    # print(elapsed_time, end ="\r")
+    calculate_results(elapsed_time
+                      )
+
+
+def calculate_results(elapsed_time):
+    # calculate WPM
+    # calculate accuracy
+
+    print("results are:")
+    print("total time taken: " + str(elapsed_time))
+    print("words per minute (WPM): " + str(((total_characters/5)/elapsed_time)*60))
+    print("typing accuracy: " + str(((total_characters - error)/ total_characters)* 100) + "%")
+
+#     output results/amend CSV of results
 
 
 def print_user_input_on_one_line(current_input, expected_input, cursor):
     print('\x1b[2K\r', end='\r')
+
+
 
     # index = 0
     # for character in current_input:
@@ -84,6 +100,7 @@ def print_user_input_on_one_line(current_input, expected_input, cursor):
     for expected_word, actual_word in zip(expected_words, actual_words):
         if expected_word == actual_word:
             print(colored(expected_word, 'green'), end=' ')
+
         else:
             print(colored(expected_word, 'red'), end=' ')
 
