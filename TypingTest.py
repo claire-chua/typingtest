@@ -1,4 +1,4 @@
-from Start import start
+from Practice import timed_test
 from Scoreboard import scoreboard
 print("Keyboard Warrior")
 
@@ -14,7 +14,7 @@ player_choice = ""
 while player_choice != "3":
     player_choice = typetest_menu()
     if (player_choice == "1"):
-        start()
+        timed_test()
     elif (player_choice == "2"):
         scoreboard()
     elif (player_choice == "3"):

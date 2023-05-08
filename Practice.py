@@ -7,7 +7,7 @@ generate = RandomSentence()
 sentence = generate.sentence().lower()
 
 
-def practice_test():
+def timed_test():
     print(sentence)
     global error
     error = 0
