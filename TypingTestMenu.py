@@ -21,15 +21,14 @@ def typetest_menu():
 
 
 player_choice = ""
-
-while player_choice != "3":
-    player_choice = typetest_menu()
-    if player_choice == "1":
-        timed_test(sentence)
-    elif player_choice == "2":
-        scoreboard()
-    elif player_choice == "3":
-        print("Keyboard Warrior")
-        typetest_menu()
-    else:
-        print("Invalid response. please ensure to enter a number a number that corresponds with your choice")
+try:
+    while player_choice != "3":
+        player_choice = typetest_menu()
+        if player_choice == "1":
+            timed_test(sentence)
+        elif player_choice == "2":
+            scoreboard()
+        elif player_choice == "3":
+            print("Keyboard Warrior")
+except ValueError:
+    print("Invalid response. please ensure to enter a number a number that corresponds with your choice")

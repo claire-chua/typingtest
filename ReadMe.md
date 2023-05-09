@@ -35,11 +35,11 @@ previous results.
 
 ### Dependencies
 
-- colorama==0.4.6
-- readchar==4.0.5
-- pytest==7.3.1
-- cursor==1.3.5
-- wonderwords==
+- colorama == 0.4.6
+- readchar == 4.0.5
+- pytest == 7.3.1
+- cursor == 1.3.5
+- wonderwords == 2.20
 
 ### System requirements
 
@@ -54,3 +54,4 @@ https://peps.python.org/pep-0008/
 https://docs.pytest.org/en/7.1.x/how-to/capture-stdout-stderr.html
 https://automationpanda.com/2017/03/14/python-testing-101-pytest/#:~:text=Pytests%20may%20be%20written%20either,or%20any%20other%20base%20class.
 https://blog.finxter.com/how-to-overwrite-the-previous-print-to-stdout-in-python/
+https://stackoverflow.com/questions/17069007/how-do-i-force-pytest-to-write-color-output

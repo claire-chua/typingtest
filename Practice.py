@@ -29,24 +29,27 @@ def timed_test(sentence):
 
         current_time = time.time()
         elapsed_time = current_time - start_time
-        if k == key.BACKSPACE:
-            sentence_cursor -= 1
-            updated_sentence = updated_sentence.rstrip(updated_sentence[-1])
-        elif k == key.ENTER:
-            user_exited = True
-            continue
+        try:
+            if k == key.BACKSPACE:
+                sentence_cursor -= 1
+                updated_sentence = updated_sentence.rstrip(updated_sentence[-1])
+            elif k == key.ENTER:
+                user_exited = True
+                continue
 
-        elif k != sentence[sentence_cursor]:
-            total_characters += 1
-            error = error + 1
-            sentence_cursor += 1
-            error_character = "" + k
-            updated_sentence = (updated_sentence[:sentence_cursor - 1] + error_character)
+            elif k != sentence[sentence_cursor]:
+                total_characters += 1
+                error = error + 1
+                sentence_cursor += 1
+                error_character = "" + k
+                updated_sentence = (updated_sentence[:sentence_cursor - 1] + error_character)
 
-        elif k == sentence[sentence_cursor]:
-            total_characters += 1
-            sentence_cursor += 1
-            updated_sentence = updated_sentence + k
+            elif k == sentence[sentence_cursor]:
+                total_characters += 1
+                sentence_cursor += 1
+                updated_sentence = updated_sentence + k
+        except IndexError:
+            print("Unable to execute function, please try again")
 
         compare_expected_input_against_user_input_highlight_differences(updated_sentence, sentence)
 
@@ -68,12 +71,15 @@ def calculate_results(elapsed_time, error, total_characters):
         print("Error, need more than 0 characters to calculate results. ")
 
 
-def write_result_to_csv(wpm, accuracy, file_path):
-    with open(file_path, 'a', newline='') as file:
-        writer = csv.writer(file)
-        writer.writerow([wpm, accuracy])
-        file.flush()
-    file.close()
+try:
+    def write_result_to_csv(wpm, accuracy, file_path):
+        with open(file_path, 'a', newline='') as file:
+            writer = csv.writer(file)
+            writer.writerow([wpm, accuracy])
+            file.flush()
+        file.close()
+except TypeError:
+    print("Due to error in results being generated, score was not be added to scoreboard")
 
 
 def compare_expected_input_against_user_input_highlight_differences(current_input, expected_input):
