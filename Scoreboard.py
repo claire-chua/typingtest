@@ -1,7 +1,6 @@
 from Practice import *
 
 opened_file = False
-# check_file = pd.read_csv("scores.csv")
 
 if not opened_file:
     with open("../scores.csv", 'a', newline='') as file:

@@ -53,7 +53,7 @@ def timed_test(sentence):
 
         compare_expected_input_against_user_input_highlight_differences(updated_sentence, sentence)
 
-    print(elapsed_time, end="\r")
+    print("", end="\r")
     result = calculate_results(elapsed_time, error, total_characters)
     write_result_to_csv(result[0], result[1], "scores.csv")
 
