@@ -2,19 +2,13 @@ import csv
 import time
 
 import cursor
+from colorama import Fore
 from readchar import readkey, key
-from termcolor import colored
-from wonderwords import RandomSentence
 
 cursor.hide()
-sentence_generator = RandomSentence()
-sentence = ""
-
-for index in range(25):
-    sentence += sentence_generator.sentence().lower() + " "
 
 
-def timed_test():
+def timed_test(sentence):
     error = 0
     print("Please type the sentence shown below. The timer will begin once you press a key. "
           "Press 'enter' to calculate results. \n")
@@ -54,10 +48,11 @@ def timed_test():
             sentence_cursor += 1
             updated_sentence = updated_sentence + k
 
-        print_user_input_on_one_line(updated_sentence, sentence)
+        compare_expected_input_against_user_input_highlight_differences(updated_sentence, sentence)
 
     print(elapsed_time, end="\r")
-    calculate_results(elapsed_time, error, total_characters)
+    result = calculate_results(elapsed_time, error, total_characters)
+    write_result_to_csv(result[0], result[1], "scores.csv")
 
 
 def calculate_results(elapsed_time, error, total_characters):
@@ -68,14 +63,20 @@ def calculate_results(elapsed_time, error, total_characters):
         print("\ntotal time taken: " + str(round(elapsed_time, 2)) + "s")
         print("\nwords per minute (WPM): " + wpm)
         print("\ntyping accuracy: " + accuracy)
-        with open("scores.csv", 'a', newline='') as file:
-            writer = csv.writer(file)
-            writer.writerow([wpm, accuracy])
+        return wpm, accuracy
     except ZeroDivisionError:
         print("Error, need more than 0 characters to calculate results. ")
 
 
-def print_user_input_on_one_line(current_input, expected_input):
+def write_result_to_csv(wpm, accuracy, file_path):
+    with open(file_path, 'a', newline='') as file:
+        writer = csv.writer(file)
+        writer.writerow([wpm, accuracy])
+        file.flush()
+    file.close()
+
+
+def compare_expected_input_against_user_input_highlight_differences(current_input, expected_input):
     print('\x1b[2K\r', end='\r')
 
     expected_words = current_input.split()
@@ -83,9 +84,8 @@ def print_user_input_on_one_line(current_input, expected_input):
 
     for expected_word, actual_word in zip(expected_words, actual_words):
         if expected_word == actual_word:
-            print(colored(expected_word, 'green'), end=' ')
-
+            print(Fore.GREEN + expected_word, end=' ')
         else:
-            print(colored(expected_word, 'red'), end=' ')
+            print(Fore.RED + expected_word, end=' ')
 
     print(end='\r')
